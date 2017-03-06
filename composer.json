@@ -1,0 +1,28 @@
+{
+	"name": "tyondo/menu-generator",
+	"type": "package",
+    "description": "Backend navigation menu generator for Laravel 5.3 and 5.4.",
+    "keywords": ["menu", "navigation",  "admin", "nav", "laravel"],
+    "homepage": "https://github.com/Rndwiga/laravel-registration-confirmation",
+    "authors": [
+        {
+            "name": "Raphael Ndwiga",
+            "email": "packages@tyondo.com"
+        }
+    ],
+    "require": {
+		"php": ">=5.5.9",
+        "laravel/framework": "5.3.*|5.4.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.5"
+    },
+    "autoload": {
+       "psr-4": {
+		 "Tyondo\\MenuGenerator\\": "src/"
+        }
+    },
+    "license": "MIT",
+	"minimum-stability": "dev"
+    
+}
