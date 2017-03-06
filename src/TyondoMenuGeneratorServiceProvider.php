@@ -25,7 +25,12 @@ class TyondoMenuGeneratorServiceProvider extends ServiceProvider {
      * your package namespace.
      */
     protected $packageName = 'tyondo_menu_generator';
-
+    /**
+     * @var array
+     */
+    protected $aliases = [
+        'menuGenerator' => 'Tyondo\MenuGenerator\TyondoMenuGenerator',
+    ];
     /**
      * Bootstrap the application services.
      * @param mixed
@@ -63,7 +68,7 @@ class TyondoMenuGeneratorServiceProvider extends ServiceProvider {
     {
         //registering package service providers and aliases
         $this->registerResources();
-        $this->registerMiddleware();
+        $this->registerAliases();
         $this->app->singleton('menuGenerator', function()
         {
             return new menuGenerator;
@@ -80,20 +85,16 @@ class TyondoMenuGeneratorServiceProvider extends ServiceProvider {
         $this->publishes([
             __DIR__.'/Config/tyondo_menu_generator.php' => config_path($this->packageName.'.php')
         ], 'config');
-        // Publish your config files
-        $this->publishes([
-            __DIR__.'/Database/Migrations/' => base_path('database/migrations')
-        ], 'migrations');
     }
     /**
      * @return void
      */
-    private function registerMiddleware()
+    private function registerAliases()
     {
-        if (method_exists($this->app['router'], 'aliasMiddleware')) {
-            $this->app['router']->aliasMiddleware('tyondo_notifications', \Tyondo\Notifications\Middleware\TyondoNotificationsMiddleware::class);
-        } else {
-            $this->app['router']->middleware('tyondo_notifications', \Tyondo\Notifications\Middleware\TyondoNotificationsMiddleware::class);
+        $loader = AliasLoader::getInstance();
+        foreach ($this->aliases as $key => $alias)
+        {
+            $loader->alias($key, $alias);
         }
     }
 }
