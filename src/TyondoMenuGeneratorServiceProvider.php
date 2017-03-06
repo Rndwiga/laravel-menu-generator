@@ -2,11 +2,7 @@
 
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\AliasLoader;
-use Illuminate\Routing\Router;
-//use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Schema;
 use Tyondo\MenuGenerator\Helpers\TyondoMenuGeneratorHelper as menuGenerator;
 /**
  * A Laravel 5.3 user package
@@ -36,27 +32,12 @@ class TyondoMenuGeneratorServiceProvider extends ServiceProvider {
      * @param mixed
      * @return void
      */
-    public function boot(Router $router)
+    public function boot()
     {
-        Schema::defaultStringLength(191);
-        /*
-         $router->group(
-            [
-                'prefix' => null,
-                'namespace' => 'Tyondo\\Notifications\\Controllers',
-            ], function(){
-            $this->loadRoutesFrom(__DIR__.'/Routes/web.php');
-        }
-        );
-         * */
-
-
         // Merge config files
         $this->mergeConfigFrom(__DIR__.'/Config/tyondo_menu_generator.php', $this->packageName);
 		// Register Views
         $this->loadViewsFrom(__DIR__.'/Resources/views', $this->packageName);
-
-
     }
 
     /**
