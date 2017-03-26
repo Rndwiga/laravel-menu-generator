@@ -12,6 +12,6 @@ use Illuminate\Support\Facades\Facade;
 class TyondoMenuGenerator extends Facade
 {
     protected static function getFacadeAccessor() {
-        return 'menuGenerator';
+        return 'GenerateMenu';
     }
 }

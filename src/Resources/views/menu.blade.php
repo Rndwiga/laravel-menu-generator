@@ -1,9 +1,7 @@
 <!-- navigation links -->
-@foreach( config('tyondo_menu_generator.navigation') as $nav_menu )
-    <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" title="{{ $nav_menu['group'] }}">
-            <i class="{{$nav_menu['class']}}"></i><span class="sr-only"> {{$nav_menu['group']}}</span> <span class="caret"></span></a>
-        <ul class="dropdown-menu">
+@foreach( $navigation as $nav_menu )
+    <li><a><i class="{{$nav_menu['class']}}"></i> {{$nav_menu['group']}} <span class="fa fa-chevron-down"></span></a>
+        <ul class="nav child_menu" style="display: none">
             @forelse($nav_menu['links'] as $navlink)
                 @if ($navlink == 'separator')
                     <li role="separator" class="divider"></li>

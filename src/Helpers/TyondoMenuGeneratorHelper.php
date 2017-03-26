@@ -10,8 +10,8 @@ namespace Tyondo\MenuGenerator\Helpers;
 
 class TyondoMenuGeneratorHelper
 {
-    public function generateMenu(){
-        return view('tyondo_menu_generator::menu');
+    public function generateMenu($navigation){
+        return view('tyondo_menu_generator::menu', compact('navigation'));
     }
 
 }

@@ -4,6 +4,8 @@
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Foundation\AliasLoader;
 use Tyondo\MenuGenerator\Helpers\TyondoMenuGeneratorHelper as menuGenerator;
+use Tyondo\MenuGenerator\Helpers\TyondoMenuGeneratorHelper;
+
 /**
  * A Laravel 5.3 user package
  *
@@ -25,7 +27,7 @@ class TyondoMenuGeneratorServiceProvider extends ServiceProvider {
      * @var array
      */
     protected $aliases = [
-        'menuGenerator' => 'Tyondo\MenuGenerator\TyondoMenuGenerator',
+        'GenerateMenu' => 'Tyondo\MenuGenerator\TyondoMenuGenerator',
     ];
     /**
      * Bootstrap the application services.
@@ -50,9 +52,9 @@ class TyondoMenuGeneratorServiceProvider extends ServiceProvider {
         //registering package service providers and aliases
         $this->registerResources();
         $this->registerAliases();
-        $this->app->singleton('menuGenerator', function()
+        $this->app->singleton('GenerateMenu', function()
         {
-            return new menuGenerator;
+            return new TyondoMenuGeneratorHelper();
         });
 
 
@@ -66,6 +68,9 @@ class TyondoMenuGeneratorServiceProvider extends ServiceProvider {
         $this->publishes([
             __DIR__.'/Config/tyondo_menu_generator.php' => config_path($this->packageName.'.php')
         ], 'config');
+        $this->publishes([
+            __DIR__.'/Resources/' => base_path('resources/views/vendor/' . $this->packageName),
+        ], 'views');
     }
     /**
      * @return void
