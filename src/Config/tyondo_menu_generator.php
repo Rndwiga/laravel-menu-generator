@@ -6,35 +6,39 @@ return [
     | Navigation Menu
     |--------------------------------------------------------------------------
     |
-    | The navigation links that run across the top of the Mnara master
-    | layout? That's these options right here. Add as many of them as you
-    | want to have appear.
+    | The navigation links that will be displayed to the user
     |
     */
-    'navigation' => [
+'navigation' => [
         [
-            'group' => 'User',
-            'class' => 'fa fa-users fa-lg',
+            'type' => 'single',
+            'title' => 'Dashboard',
+            'class' => 'fa fa-fw fa-home fa-lg',
+            'route' => 'gentella.home',
+        ],
+        [
+            'type' => 'group',
+            'group' => 'Assessment',
+            'class' => 'fa fa-cubes fa-lg',
             'links' => [
                 [
-                    'title' => 'Add Role',
+                    'title' => 'Personal Information',
                     'class' => 'fa fa-fw fa-plus',
-                    'route' => 'password.email'
+                    'route' => 'admin.personal.information.index'
                 ],
                 [
-                    'title' => 'List Roles',
+                    'title' => 'Personal Assessment',
                     'class' => 'fa fa-fw fa-th-list',
-                    'route' => 'password.request'
+                    'route' => 'admin.personal.assessment.index'
                 ],
-
                 'separator',
 
                 [
-                    'title' => 'Role Matrix',
+                    'title' => 'Training Needs',
                     'class' => 'fa fa-fw fa-table',
-                    'route' => 'register'
-                ]
+                    'route' => 'admin.training.assessment.index'
+                ],
             ]
-        ]
+        ],
     ],
 ];
