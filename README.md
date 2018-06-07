@@ -1,4 +1,4 @@
-# laravel-registration-confirmation
+# laravel-menu-generator
 
 ### For below laravel 5.5
 register the Service provider
