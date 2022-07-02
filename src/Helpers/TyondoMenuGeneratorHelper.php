@@ -11,10 +11,22 @@ namespace Tyondo\MenuGenerator\Helpers;
 class TyondoMenuGeneratorHelper
 {
     public function generateMenu($navigation, $view=null){
-        if($view){
-            return view($view, compact('navigation'));
+        $filtered =[];
+        foreach ($navigation as $nav){
+            $arr = explode(',',$nav['role']);
+            if (in_array(getUserRole(auth()->id()),$arr)){
+                $filtered[] = $nav;
+            }
         }
-        return view('tyondo_menu_generator::menu', compact('navigation'));
+        if($view){
+            return view($view)->with([
+                'navigation' => $filtered
+            ]);
+        }
+       // return view('tyondo_menu_generator::menu', compact('navigation'));
+        return view('tyondo_menu_generator::menu')->with([
+            'navigation' => $filtered
+        ]);
     }
 
 }
